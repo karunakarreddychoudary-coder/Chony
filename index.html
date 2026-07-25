@@ -1,98 +1,187 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Experience | Vercel Static</title>
+    <title>Happy Birthday! ✨</title>
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #09090b;
+            color: #f4f4f5;
+            overflow-x: hidden;
+        }
+        .serif { font-family: 'Playfair Display', serif; }
         .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .glow {
-            box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.3);
+        .glow-bg {
+            background: radial-gradient(circle at 50% 30%, rgba(236, 72, 153, 0.15), rgba(168, 85, 247, 0.08), transparent 70%);
+        }
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(236, 72, 153, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(236, 72, 153, 0.2);
         }
     </style>
 </head>
-<body class="bg-neutral-950 text-neutral-100 antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="min-h-screen flex flex-col justify-between selection:bg-pink-500 selection:text-white relative">
 
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-tr from-brand-600/30 to-purple-600/20 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <!-- Ambient Glow Background -->
+    <div class="fixed inset-0 glow-bg pointer-events-none -z-10"></div>
 
-    <header class="sticky top-0 z-50 px-6 py-4">
-        <nav class="max-w-5xl mx-auto glass rounded-2xl px-6 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-2 font-extrabold text-xl tracking-tight">
-                <span class="w-3 h-3 rounded-full bg-brand-500 animate-pulse"></span>
-                <span>Vercel<span class="text-neutral-500">Static</span></span>
-            </div>
-            <div class="flex items-center gap-6 text-sm font-medium text-neutral-400">
-                <a href="#features" class="hover:text-white transition-colors">Features</a>
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="https://github.com" target="_blank" class="glass px-4 py-2 rounded-xl text-white hover:bg-white/10 transition-all flex items-center gap-2">
-                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
-                </a>
-            </div>
-        </nav>
-    </header>
+    <!-- Music Toggle -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="musicBtn" onclick="toggleMusic()" class="glass px-4 py-2.5 rounded-full text-xs font-semibold tracking-wider flex items-center gap-2 hover:bg-white/10 transition-all border border-white/10 shadow-2xl">
+            <i data-lucide="music" class="w-4 h-4 text-pink-400"></i>
+            <span id="musicText">PLAY MUSIC</span>
+        </button>
+    </div>
 
-    <main class="max-w-4xl mx-auto px-6 py-24 text-center flex-1 flex flex-col justify-center items-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-brand-500 mb-8 border border-brand-500/20">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Pure Static • Ultra Speed
-        </div>
+    <!-- Hero / Celebration Header -->
+    <main class="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
         
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
-            Build sleek sites with <br/>
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-purple-400 to-pink-500">
-                zero complexity.
+        <!-- Animated Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-bold uppercase tracking-widest text-pink-400 mb-8 border border-pink-500/20">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 animate-spin"></i> A Special Celebration
+        </div>
+
+        <!-- Main Wish Title -->
+        <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight mb-6 leading-none">
+            Happy Birthday, <br/>
+            <span class="serif italic font-normal bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-400">
+                [Name Here] ✨
             </span>
         </h1>
-        
-        <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mb-10 leading-relaxed">
-            Direct GitHub sync to Vercel static edge nodes. Instant deployments, perfect Lighthouse scores, and minimal setup.
+
+        <p class="text-lg md:text-xl text-zinc-400 max-w-xl mx-auto font-light leading-relaxed mb-10">
+            Today is all about celebrating you—your energy, your milestones, and every incredible moment yet to come.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-            <a href="#" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-all glow flex items-center justify-center gap-2">
-                Get Started <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-            <a href="#" class="w-full sm:w-auto px-8 py-3.5 rounded-xl glass hover:bg-white/10 text-neutral-300 font-semibold transition-all">
-                Documentation
-            </a>
+        <!-- Interactive Surprise Button -->
+        <div class="flex justify-center mb-16">
+            <button onclick="triggerSurprise()" class="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 font-bold text-white shadow-xl shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+                <i data-lucide="gift" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                <span>Click For Surprise 🎉</span>
+            </button>
         </div>
+
+        <!-- Memory / Message Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left my-12">
+            
+            <div class="glass p-6 rounded-3xl card-hover">
+                <div class="w-10 h-10 rounded-2xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-4">
+                    <i data-lucide="heart" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-white">The Journey</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">
+                    Another year of growth, cracking impossible challenges, and leveling up in every area of life.
+                </p>
+            </div>
+
+            <div class="glass p-6 rounded-3xl card-hover">
+                <div class="w-10 h-10 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-white">Unstoppable</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">
+                    May this year bring massive breakthroughs, clear vision, and non-stop victories.
+                </p>
+            </div>
+
+            <div class="glass p-6 rounded-3xl card-hover">
+                <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-4">
+                    <i data-lucide="smile" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-white">Good Vibes</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">
+                    Here’s to genuine happiness, peace of mind, and surrounding yourself with absolute greatness.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Personal Note / Message Box -->
+        <div class="glass p-8 md:p-10 rounded-3xl max-w-2xl mx-auto text-center border border-white/10 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-pink-500/10 blur-3xl rounded-full"></div>
+            <i data-lucide="quote" class="w-8 h-8 text-pink-400/40 mx-auto mb-4"></i>
+            <p class="serif text-xl md:text-2xl italic text-zinc-200 mb-4">
+                "The best way to predict your future is to create it."
+            </p>
+            <p class="text-xs uppercase tracking-widest text-zinc-500 font-semibold">
+                Wish you an extraordinary year ahead.
+            </p>
+        </div>
+
     </main>
 
-    <footer class="border-t border-neutral-900 py-8 px-6 text-center text-sm text-neutral-500">
-        <p>© 2026 Deployed via Vercel Edge Network.</p>
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-zinc-600">
+        Made with ❤️ • Hosted on Vercel
     </footer>
 
+    <!-- Audio Player (Hidden) -->
+    <!-- Replace src with your audio link or a local music file like music.mp3 in the repo -->
+    <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=happy-birthday-155461.mp3"></audio>
+
     <script>
+        // Initialize Icons
         lucide.createIcons();
+
+        // Confetti Surprise Effect
+        function triggerSurprise() {
+            var count = 200;
+            var defaults = { origin: { y: 0.7 } };
+
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+        }
+
+        // Music Toggle logic
+        var audio = document.getElementById("bgMusic");
+        var musicText = document.getElementById("musicText");
+        var isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicText.innerText = "PLAY MUSIC";
+            } else {
+                audio.play();
+                musicText.innerText = "PAUSE MUSIC";
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Auto fire small confetti on page load
+        window.onload = function() {
+            setTimeout(triggerSurprise, 500);
+        };
     </script>
 </body>
 </html>
