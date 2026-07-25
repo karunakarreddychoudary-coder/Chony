@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .card {
+      background: #1e293b;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #334155;
+    }
+    h1 { font-size: 2rem; color: #f43f5e; margin-bottom: 8px; }
+    p.subtitle { color: #94a3b8; font-size: 0.95rem; margin-top: 0; }
+    
+    .cake-container {
+      font-size: 5rem;
+      margin: 20px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+    .cake-container:hover { transform: scale(1.1); }
+    
+    .btn {
+      background: #f43f5e;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #e11d48; }
+
+    #secret-msg {
+      display: none;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #334155;
+      color: #e2e8f0;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1 id="title">Make a Wish! 🎂</h1>
+    <p class="subtitle" id="subtitle">Tap the cake to blow out the candles</p>
+
+    <div class="cake-container" id="cake" onclick="blowCandles()">
+      🕯️🎂🕯️
+    </div>
+
+    <button class="btn" onclick="blowCandles()">Blow Out Candles 🎉</button>
+
+    <div id="secret-msg">
+      <p><strong>Happy Birthday! 🎉</strong></p>
+      <p>Wishing you the best year ahead full of success, peace, and great food!</p>
+    </div>
+  </div>
+
+  <script>
+    let blown = false;
+
+    function blowCandles() {
+      if (blown) return;
+      blown = true;
+
+      // Swap candle icon to blown out state
+      document.getElementById('cake').innerText = '🎂';
+      document.getElementById('title').innerText = '🎉 HAPPY BIRTHDAY! 🎉';
+      document.getElementById('subtitle').innerText = 'Wish registered ✨';
+      
+      // Reveal message
+      document.getElementById('secret-msg').style.display = 'block';
+
+      // Confetti burst logic
+      let count = 200;
+      let defaults = { origin: { y: 0.7 } };
+
+      function fire(particleRatio, opts) {
+        confetti(Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio)
+        }));
+      }
+
+      fire(0.25, { spread: 26, startVelocity: 55 });
+      fire(0.2, { spread: 60 });
+      fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+      fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+      fire(0.1, { spread: 120, startVelocity: 45 });
+    }
+  </script>
+</body>
+</html>
